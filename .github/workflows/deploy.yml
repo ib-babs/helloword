@@ -2,7 +2,7 @@
 
 name: Build .NET application and deploy it to azure -- helloword
 
-on: 
+on:
   workflow_dispatch:
 jobs:
   build:
@@ -13,6 +13,7 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      
+      - name: Install dependencies
+        run: dotnet restore ./helloworld/helloworld.csproj
       - name: Build
         run: dotnet build --configuration Release --no-restore
