@@ -1,0 +1,11 @@
+﻿@using helloword.Models
+@model Movie
+<h1>New Movie</h1>
+
+<form asp-action="CreateMovie" method="post">
+    <div asp-validation-summary="All"></div>
+    <input type="text" asp-for="Title" placeholder="Title" />
+    <input type="date" asp-for="ReleasedDate" />
+    <input type="number" asp-for="Price" placeholder="Price" />
+    <input type="submit" value="Submit" />
+</form>
