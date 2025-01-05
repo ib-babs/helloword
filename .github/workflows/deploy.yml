@@ -14,6 +14,6 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Install dependencies
-        run: dotnet restore ./hellowold/hellowold.csproj
+        run: dotnet restore ./helloword/helloword.csproj
       - name: Build
         run: dotnet build --configuration Release --no-restore
