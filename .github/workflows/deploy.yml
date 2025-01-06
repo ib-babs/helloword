@@ -4,6 +4,9 @@ name: Build .NET application and deploy it to azure -- helloword
 
 on:
   workflow_dispatch:
+
+env:
+  AZURE_APP_NAME: "app-helloword-eastus-dev-001"
 jobs:
   build:
     runs-on: windows-latest
@@ -15,3 +18,15 @@ jobs:
           dotnet-version: 8.0.x
       - name: Build
         run: dotnet build --configuration Release
+
+        # Publish
+      - name: Publish
+        run: dotnet publish --configuration Release --output ./publish
+
+        # Deploy
+      - name: Deploy to azure
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.AZURE_APP_NAME }}
+          publish-profile: ${{ secrets.API_PUBLISH_SECRET }}
+          package: ./publish
